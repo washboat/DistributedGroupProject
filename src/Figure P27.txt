@@ -1,0 +1,186 @@
+﻿Figure P27.32
+                                        
+An aluminum wire with a diameter of 0.100 mm has a uniform electric field of 0.200 V/m imposed along its entire length. The temperature of the wire is 50.0°C. Assume one free electron per atom. (a) Use the infor- mation in Table 27.2 to determine the resistivity of aluminum at this temperature. (b) What is the current density in the wire? (c) What is the total current in the wire? (d) What is the drift speed of the conduction electrons? (e) What potential difference must exist between the ends of a 2.00-m length of the wire to pro- duce the stated electric field?
+                                        
+1.                                                                                                          
+2. Review. An aluminum rod has a resistance of 1.23 V at 20.0°C. Calculate the resistance of the rod at 120°C by accounting for the changes in both the resistivity and the dimensions of the rod. The coefficient of linear expansion for aluminum is 2.40 3 1026 (°C)21.
+3.                                                 
+4.                                                                                                          
+5. At what temperature will aluminum have a resistivity that is three times the resistivity copper has at room temperature?
+6.                                                 
+                                                                                 
+Section 27.6 Electrical Power
+                                        
+1.                                                                                                          
+2. Assume that global lightning on the Earth constitutes a constant current of 1.00 kA between the ground and an atmospheric layer at potential 300 kV. (a) Find the power of terrestrial lightning. (b) For comparison, find the power of sunlight falling on the Earth. Sunlight has an intensity of 1 370 W/m2 above the atmosphere. Sunlight falls perpendicularly on the circular pro- jected area that the Earth presents to the Sun.
+3.                                                 
+4.                                                                                                          
+5. In a hydroelectric installation, a turbine delivers 1 500 hp to a generator, which in turn transfers 80.0% of the mechanical energy out by electrical transmis- sion. Under these conditions, what current does the generator deliver at a terminal potential difference of 2 000 V?
+6.                                                 
+7.                                                                                                          
+8. A Van de Graaff generator (see Fig. 25.23) is operat- ing so that the potential difference between the high- potential electrode B and the charging needles at A is 15.0 kV. Calculate the power required to drive the belt against electrical forces at an instant when the effective current delivered to the high-potential elec- trode is 500 mA.
+9.                                                 
+10.                                                                                                          
+11. A certain waffle iron is rated at 1.00 kW when con- nected to a 120-V source. (a) What current does the waffle iron carry? (b) What is its resistance?
+12.                                                 
+13.                                                                                                          
+14. The potential difference across a resting neuron in the
+15.                                                 
+                                                                                 
+BIO human body is about 75.0 mV and carries a current of
+                                
+                                
+                                        
+about 0.200 mA. How much power does the neuron release?
+                                        
+41. Suppose your portable DVD player draws a current of 350 mA at 6.00 V. How much power does the player require?
+                                        
+Review. A well-insulated electric water heater warms 109 kg of water from 20.0°C to 49.0°C in 25.0 min. Find the resistance of its heating element, which is con- nected across a 240-V potential difference.
+                                        
+A 100-W lightbulb connected to a 120-V source expe- riences a voltage surge that produces 140 V for a moment. By what percentage does its power output increase? Assume its resistance does not change.
+                                        
+44. The cost of energy delivered to residences by electrical transmission varies from $0.070/kWh to $0.258/kWh throughout the United States; $0.110/kWh is the aver- age value. At this average price, calculate the cost of (a) leaving a 40.0-W porch light on for two weeks while you are on vacation, (b) making a piece of dark toast in 3.00 min with a 970-W toaster, and (c) drying a load of clothes in 40.0 min in a 5.20 3 103-W dryer.
+                                        
+45. Batteries are rated in terms of ampere-hours (A ? h). W For example, a battery that can produce a current of 2.00Afor3.00hisratedat6.00A?h.(a)Whatisthe total energy, in kilowatt-hours, stored in a 12.0-V battery rated at 55.0 A ? h? (b) At $0.110 per kilowatt-hour, what
+                                        
+is the value of the electricity produced by this battery?
+                                        
+46. Residential building codes typically require the use W of 12-gauge copper wire (diameter 0.205 cm) for wir- Q/C ing receptacles. Such circuits carry currents as large as 20.0 A. If a wire of smaller diameter (with a higher gauge number) carried that much current, the wire could rise to a high temperature and cause a fire. (a) Calculate the rate at which internal energy is produced in 1.00 m of 12-gauge copper wire carrying 20.0 A. (b) What If? Repeat the calculation for a 12-gauge aluminum wire. (c) Explain whether a 12-gauge aluminum wire would
+                                        
+be as safe as a copper wire.
+                                        
+Assuming the cost of energy from the electric company is $0.110/kWh, compute the cost per day of operating a lamp that draws a current of 1.70 A from a 110-V line.
+                                        
+48. An 11.0-W energy-efficient fluorescent lightbulb is designed to produce the same illumination as a con- ventional 40.0-W incandescent lightbulb. Assuming a cost of $0.110/kWh for energy from the electric com- pany, how much money does the user of the energy- efficient bulb save during 100 h of use?
+                                        
+49. A coil of Nichrome wire is 25.0 m long. The wire has a diameter of 0.400 mm and is at 20.0°C. If it carries a current of 0.500 A, what are (a) the magnitude of the electric field in the wire and (b) the power delivered to it? (c) What If? If the temperature is increased to 340°C and the potential difference across the wire remains constant, what is the power delivered?
+                                        
+50. Review. A rechargeable battery of mass 15.0 g deliv- ers an average current of 18.0 mA to a portable DVD player at 1.60 V for 2.40 h before the battery must be
+                                
+                        
+                        
+                                                
+                                                        
+                                                                
+42.
+                                                        
+                                                
+                                        
+	                                                
+                                                        
+                                                                
+AMT
+                                                        
+                                                
+                                        
+	                                                
+                                                        
+                                                                
+M
+                                                        
+                                                
+                                        
+	                                                                                                                            
+                                
+                                        
+43.
+                                
+                        
+                        
+                                                
+                                                        
+                                                                
+33.
+                                                        
+                                                
+                                        
+	                                                
+                                                        
+                                                                
+M
+                                                        
+                                                
+                                        
+	                        
+                                                
+                                                        
+                                                                
+47.
+                                                        
+                                                
+                                        
+	                                                
+                                                        
+                                                                
+M
+                                                        
+                                                
+                                        
+	                
+                
+                        
+                                
+                                        
+recharged. The recharger maintains a potential dif- ference of 2.30 V across the battery and delivers a charging current of 13.5 mA for 4.20 h. (a) What is the efficiency of the battery as an energy storage device? (b) How much internal energy is produced in the bat- tery during one charge–discharge cycle? (c) If the battery is surrounded by ideal thermal insulation and has an effective specific heat of 975 J/kg ? °C, by how much will its temperature increase during the cycle?
+                                        
+51. A 500-W heating coil designed to operate from 110 V is made of Nichrome wire 0.500 mm in diameter. (a) Assuming the resistivity of the Nichrome remains constant at its 20.0°C value, find the length of wire used. (b) What If? Now consider the variation of resis- tivity with temperature. What power is delivered to the coil of part (a) when it is warmed to 1 200°C?
+                                        
+52. Why is the following situation impossible? A politician is decrying wasteful uses of energy and decides to focus on energy used to operate plug-in electric clocks in the United States. He estimates there are 270 million of these clocks, approximately one clock for each per- son in the population. The clocks transform energy taken in by electrical transmission at the average rate 2.50 W. The politician gives a speech in which he com- plains that, at today’s electrical rates, the nation is los- ing $100 million every year to operate these clocks.
+                                        
+A certain toaster has a heating element made of Nichrome wire. When the toaster is first connected to a 120-V source (and the wire is at a temperature of 20.0°C), the initial current is 1.80 A. The current decreases as the heating element warms up. When the toaster reaches its final operating temperature, the cur- rent is 1.53 A. (a) Find the power delivered to the toaster when it is at its operating temperature. (b) What is the final temperature of the heating element?
+                                        
+54. Make an order-of-magnitude estimate of the cost of one person’s routine use of a handheld hair dryer for 1 year. If you do not use a hair dryer yourself, observe or interview someone who does. State the quantities you estimate and their values.
+                                        
+55. Review. The heating element of an electric coffee M maker operates at 120 V and carries a current of 2.00 A. Assuming the water absorbs all the energy delivered to the resistor, calculate the time interval during which the temperature of 0.500 kg of water rises from room
+                                        
+temperature (23.0°C) to the boiling point.
+                                        
+56. A 120-V motor has mechanical power output of 2.50 hp. It is 90.0% efficient in converting power that it takes in by electrical transmission into mechanical power. (a) Find the current in the motor. (b) Find the energy delivered to the motor by electrical transmission in 3.00 h of oper- ation. (c) If the electric company charges $0.110/kWh, what does it cost to run the motor for 3.00 h?
+                                        
+additional Problems
+                                        
+57. A particular wire has a resistivity of 3.0 3 1028 V ? m M and a cross-sectional area of 4.0 3 1026 m2. A length of this wire is to be used as a resistor that will receive
+                                
+                                
+                                        
+problems 829 48 W of power when connected across a 20-V battery.
+                                        
+What length of wire is required?
+                                        
+58. Determine the temperature at which the resistance of an aluminum wire will be twice its value at 20.0°C. Assume its coefficient of resistivity remains constant.
+                                        
+59. A car owner forgets to turn off the headlights of his car while it is parked in his garage. If the 12.0-V bat- tery in his car is rated at 90.0 A ? h and each headlight requires 36.0 W of power, how long will it take the bat- tery to completely discharge?
+                                        
+60. Lightbulb A is marked “25 W 120 V,” and lightbulb B Q/C is marked “100 W 120 V.” These labels mean that each lightbulb has its respective power delivered to it when it is connected to a constant 120-V source. (a) Find the resistance of each lightbulb. (b) During what time interval does 1.00 C pass into lightbulb A? (c) Is this charge different upon its exit versus its entry into the lightbulb? Explain. (d) In what time interval does 1.00 J pass into lightbulb A? (e) By what mechanisms does this energy enter and exit the lightbulb? Explain. (f) Find the cost of running lightbulb A continuously for 30.0 days, assuming the electric company sells its
+                                        
+product at $0.110 per kWh.
+                                        
+61. One wire in a high-voltage transmission line carries W 1 000 A starting at 700 kV for a distance of 100 mi. If the resistance in the wire is 0.500 V/mi, what is the
+                                        
+power loss due to the resistance of the wire?
+                                        
+An experiment is conducted to measure the electri- Q/C cal resistivity of Nichrome in the form of wires with different lengths and cross-sectional areas. For one set of measurements, a student uses 30-gauge wire, which has a cross-sectional area of 7.30 3 1028 m2. The student measures the potential difference across the wire and the current in the wire with a voltme- ter and an ammeter, respectively. (a) For each set of measurements given in the table taken on wires of three different lengths, calculate the resistance of the wires and the corresponding values of the resistiv- ity. (b) What is the average value of the resistivity? (c) Explain how this value compares with the value                                        
+A charge Q is placed on a capacitor of capacitance C. S The capacitor is connected into the circuit shown in Figure P27.63, with an open switch, a resistor, and an initially uncharged capacitor of capacitance 3C. The830 chapter 27 current and resistance
+                                        
+switch is then closed, and the circuit comes to equilib- rium. In terms of Q and C, find (a) the final poten- tial difference between the plates of each capacitor, (b) the charge on each capacitor, and (c) the final energy stored in each capacitor. (d) Find the internal energy appearing in the resistor.
+                                        
+64. Review. An office worker uses an immersion heater to warm 250 g of water in a light, covered, insulated cup from 20.0°C to 100°C in 4.00 min. The heater is a Nichrome resistance wire connected to a 120-V power supply. Assume the wire is at 100°C throughout the 4.00-min time interval. (a) Specify a relationship between a diameter and a length that the wire can have. (b) Can it be made from less than 0.500 cm3 of Nichrome?
+                                        
+65. An x-ray tube used for cancer therapy operates at BIO 4.00 MV with electrons constituting a beam current of 25.0 mA striking a metal target. Nearly all the power in the beam is transferred to a stream of water flowing through holes drilled in the target. What rate of flow, in kilograms per second, is needed if the rise in tem-
+                                        
+perature of the water is not to exceed 50.0°C?
+                                        
+An all-electric car (not a hybrid) is designed to run from a bank of 12.0-V batteries with total energy stor- age of 2.00 3 107 J. If the electric motor draws 8.00 kW as the car moves at a steady speed of 20.0 m/s, (a) what is the current delivered to the motor? (b) How far can the car travel before it is “out of juice”?
+                                        
+A straight, cylindrical wire lying along the x axis has a length of 0.500 m and a diameter of 0.200 mm. It is made of a material described by Ohm’s law with a resistivity of r 5 4.00 3 1028 V ? m. Assume a poten- tial of 4.00 V is maintained at the left end of the wire at x 5 0. Also assume V 5 0 at x 5 0.500 m. Find (a) the magnitude and direction of the electric field in the wire, (b) the resistance of the wire, (c) the magnitude and direction of the electric current in the wire, and (d) the current density in the wire. (e) Show that E 5 rJ.
+                                        
+68. A straight, cylindrical wire lying along the x axis has S a length L and a diameter d. It is made of a material described by Ohm’s law with a resistivity r. Assume potential V is maintained at the left end of the wire at x 5 0. Also assume the potential is zero at x 5 L. In terms of L, d, V, r, and physical constants, derive expressions for (a) the magnitude and direction of the electric field in the wire, (b) the resistance of the wire, (c) the magnitude and direction of the electric current in the wire, and (d) the current density in the wire.
+                                        
+(e) Show that E 5 rJ.
+                                        
+69. An electric utility company supplies a customer’s house W from the main power lines (120 V) with two copper wires, each of which is 50.0 m long and has a resistance of 0.108 V per 300 m. (a) Find the potential difference at the customer’s house for a load current of 110 A. For this load current, find (b) the power delivered to the customer and (c) the rate at which internal energy is
+                                        
+produced in the copper wires.
+
+
+end

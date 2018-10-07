@@ -28,14 +28,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Client {
     public static void main(String[] args) throws IOException {
         CopyOnWriteArrayList<String> line = null;
-        String ServerRouterIP = "192..."; //ServerRouter IP
-        String ServerIP = "192..."; // Server IP
+        String ServerRouterIP = "10.100.103.231"; //ServerRouter IP
+        String ServerIP = "10.100.67.68"; // Server IP
         Socket socket = null;
         PrintWriter toRouter = null;
         BufferedReader fromRouter = null;
 
         try {
-            Reader fileReader = new FileReader("REPLACE ME"); //put file path to text file here
+            Reader fileReader = new FileReader("/Users/noahholcombe/Documents/DistributedGroupProject/src/file.txt"); //put file path to text file here
             BufferedReader fromFile = new BufferedReader(fileReader);
             line = readFile(fromFile);
 
@@ -44,6 +44,8 @@ public class Client {
             fromRouter = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             toRouter.println("client");
             toRouter.println(ServerIP);   //ServerIP
+            Long StartTime = System.nanoTime();
+            Long EndTime = 0L;
             for (String s : line) {
                 toRouter.println(s);
             }
@@ -54,7 +56,13 @@ public class Client {
             while ((fromServer = fromRouter.readLine()) != null){
                 System.out.println("Reading from input stream");
                 System.out.println(fromServer);
+                if(fromServer.equals("END")){
+                    EndTime = System.nanoTime();
+                    break;
+                }
             }
+            System.out.println((EndTime - StartTime) + "nanoseconds");
+
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host: " + ServerRouterIP);
             System.exit(1);
