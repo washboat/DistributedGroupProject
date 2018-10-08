@@ -40,7 +40,7 @@ public class ServerRouter {
     private Object[][] routingTable;    //[IP address] [Socket]
     public ServerRouter() {
         try {
-            routingTable = new Object[5][2]; // [number of max clients][number of variables specific to each client i.e socket]
+            routingTable = new Object[256][2]; // [number of max clients][number of variables specific to each client i.e socket]
             serverSocket = new ServerSocket(localport);
 
             int clientCounter = 0;  //Used by each thread to insert itself at the end of the routing table

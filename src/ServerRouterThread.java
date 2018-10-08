@@ -26,7 +26,7 @@ public class ServerRouterThread extends Thread {
 
     private String inputLine = null;
     private String outputLine = null;
-    String clientIP = null;
+    String clientIP[] = null;
     private String destinationIP = null;
     private int index = -1;
     private String clientType = null;
@@ -40,10 +40,12 @@ public class ServerRouterThread extends Thread {
      * @throws IOException - if we can't I/O streams usually do to being passed a null socket
      */
     public ServerRouterThread(Object table[][], Socket clientSocket, int index) throws IOException {
+        String myIP[] = null;
         routingTable = table;
         toClient = new PrintWriter(clientSocket.getOutputStream(), true);
         fromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         this.index = index;
+
 
         //Place client's IP and socket in routing table
         routingTable[this.index][0] = clientSocket.getInetAddress().getHostAddress() + ":" + Integer.toString(index);
@@ -89,13 +91,24 @@ public class ServerRouterThread extends Thread {
     private void tableLookup() throws IOException {
         for (Object[] objects : routingTable) {
             String ip = (String) objects[0];
-            String split[] = ip.split(":");
-            if(destinationIP.equals(split[0])){
+
+            if (destinationIP.equals(ip)){
                 System.out.printf("Destination found %s in table%n", destinationIP);
                 destinationSocket = (Socket)objects[1];
                 toDestination = new PrintWriter(destinationSocket.getOutputStream(), true);
                 fromDestination = new BufferedReader(new InputStreamReader(destinationSocket.getInputStream()));
                 break;
+            }
+
+            else if(destinationIP.contains(":")) {
+                String split[] = ip.split(":");
+                if (destinationIP.equals(split[0])) {
+                    System.out.printf("Destination found %s in table%n", destinationIP);
+                    destinationSocket = (Socket) objects[1];
+                    toDestination = new PrintWriter(destinationSocket.getOutputStream(), true);
+                    fromDestination = new BufferedReader(new InputStreamReader(destinationSocket.getInputStream()));
+                    break;
+                }
             }
         }
     }
@@ -111,7 +124,11 @@ public class ServerRouterThread extends Thread {
         while((inputLine = fromClient.readLine()) != null) {
             System.out.printf("Attempting to send line: %s to destination: %s%n", inputLine, destinationIP);
             outputLine = inputLine;
-            if (checkIPv4(outputLine)){
+            String temp = null;
+            if(outputLine.contains(":")) {
+                temp = (outputLine.split(":"))[0];
+            }
+            if (checkIPv4(temp)){
                 destinationIP = outputLine;
                 //
                 tableLookup();
@@ -127,11 +144,13 @@ public class ServerRouterThread extends Thread {
 
     public void serviceClient() throws IOException {
         System.out.println("Servicing client" + routingTable[index][0]);
+
         destinationIP = fromClient.readLine();
         System.out.println("Destination IP address" +  destinationIP);
 
 
         tableLookup();
+
         toDestination.println(routingTable[this.index][0]);
         deliver();
     }
@@ -146,6 +165,10 @@ public class ServerRouterThread extends Thread {
                 break;
             }
         }
+//        String tempInput = fromClient.readLine();
+//        if (tempInput.contains(":"))
+//            clientIP = tempInput.split(":");
+//        destinationIP = clientIP[0];
         destinationIP = fromClient.readLine();
         System.out.println("Destination IP address" +  destinationIP);
 

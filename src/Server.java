@@ -3,8 +3,8 @@ import java.io.*;
 
 
 /*
-* TODO add logic so servers can exit the infinite loops without throwing an exception
-* TODO read input from console so IP address aren't hardcoded
+ * TODO add logic so servers can exit the infinite loops without throwing an exception
+ * TODO read input from console so IP address aren't hardcoded
  * */
 /*
  * So, the loosely defined and extremely inconsistent "protocol" I had in mind
@@ -38,8 +38,10 @@ public class Server extends Thread {
     String inputLine = null;
     String outputLine = null;
     String type = "server";
+    //ArrayList<ArrayList<double> > timeTable = null;
 
     public Server(String routerName, int port) throws IOException {
+        //timeTable = new ArrayList<ArrayList<double> >();
         router = routerName;
         routerPort = port;
         clientSocket = new Socket(router, routerPort);
@@ -49,20 +51,49 @@ public class Server extends Thread {
         toRouter.println("server");
         toRouter.println("ready");
 
-
+        long startTime = -1;
+        long endTime = -1;
+        int clientCounter = 0;
         while((inputLine = fromRouter.readLine()) != null){
+            if(checkIPv4(inputLine)) {
+//                startTime = System.nanoTime();
+                //inputLine = inputLine + ":1";
+                System.out.println(inputLine);
+            }
+
             System.out.println(inputLine);
-            toRouter.println(inputLine.toUpperCase());
-            if (inputLine.equals("")) {
-                break;
+            toRouter.println( inputLine.toUpperCase()  );
+            if (inputLine.equals("end")) {
+                endTime = System.nanoTime();
+                //timeTable[clientCounter][0] = startTime;
+
             }
         }
+        endTime = System.nanoTime();
 
+        long duration = (endTime - startTime);
+        System.out.println(duration);
+
+
+    }
+
+    public static final boolean checkIPv4(final String ip) {
+        boolean isIPv4;
+
+
+        try {
+            final InetAddress inet = InetAddress.getByName(ip);
+            isIPv4 = inet.getHostAddress().equals(ip)
+                    && inet instanceof Inet4Address;
+        } catch (final UnknownHostException e) {
+            isIPv4 = false;
+        }
+        return isIPv4;
     }
 
     public static void main(String[] args) {
         try {
-            Server server = new Server("REPLACE ME", 6000);
+            Server server = new Server("192.168.1.76", 6000);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -24,22 +24,67 @@ import java.util.concurrent.CopyOnWriteArrayList;
  *
  *   5) There should probably be some end of service carriage that clients and servers can send to shut everything down,
  *       but i haven't gotten that far so clients, servers, and the router all have to be forcibly shut down at some point
+ *
+ *       GUCK
+ *
+ *       GDG R
  * */
-public class Client {
-    public static void main(String[] args) throws IOException {
-        CopyOnWriteArrayList<String> line = null;
-        String ServerRouterIP = "10.100.103.231"; //ServerRouter IP
-        String ServerIP = "10.100.67.68"; // Server IP
-        Socket socket = null;
-        PrintWriter toRouter = null;
-        BufferedReader fromRouter = null;
+public class Client extends Thread {
 
+    CopyOnWriteArrayList<String> line = null;
+    String ServerRouterIP = null; //ServerRouter IP
+    String ServerIP = null; // Server IP
+    Socket socket = null;
+    PrintWriter toRouter = null;
+    BufferedReader fromRouter = null;
+    int port;
+
+    public Client(String serverIP, String routerIP, int port)  throws IOException {
+        line = null;
+        ServerRouterIP = routerIP; //ServerRouter IP
+        ServerIP = serverIP; // Server IP
+        socket = null;
+        toRouter = null;
+        fromRouter = null;
+        this.port = port;
+
+
+    }
+    public static void main(String[] args) throws IOException {
+        String serverIP = "192.168.1.76:0"; //SERVER ip NEED TO HAVE THE :0 AT THE END OF THE ADDRESS
+        String routerIP = "192.168.1.76";
+        int port = 6000;
+
+        int howManyClients = 15;    //how many clients we spawn
+        for (int i = 1; i <= howManyClients; i++){
+            Client client = new Client(serverIP, routerIP, port);
+            client.start();
+        }
+
+}
+
+    /**
+     * @param fileReader
+     * @return
+     * @throws IOException
+     */
+    public static CopyOnWriteArrayList<String> readFile(BufferedReader fileReader) throws IOException {
+        String newLine;
+        CopyOnWriteArrayList<String> newList = new CopyOnWriteArrayList<String>();
+        while(( newLine = fileReader.readLine()) != null){
+            newList.add(newLine);
+        }
+        return newList;
+    }
+
+    @Override
+    public void run() {
         try {
-            Reader fileReader = new FileReader("/Users/noahholcombe/Documents/DistributedGroupProject/src/file.txt"); //put file path to text file here
+            Reader fileReader = new FileReader("C:\\Users\\Triston C Gregoire\\Desktop\\DistributedProject\\src\\file.txt"); //put file path to text file here
             BufferedReader fromFile = new BufferedReader(fileReader);
             line = readFile(fromFile);
 
-            socket = new Socket(ServerRouterIP, 6000);
+            socket = new Socket(ServerRouterIP, port);
             toRouter = new PrintWriter(socket.getOutputStream(), true);
             fromRouter = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             toRouter.println("client");
@@ -58,7 +103,7 @@ public class Client {
                 System.out.println(fromServer);
                 if(fromServer.equals("END")){
                     EndTime = System.nanoTime();
-                    break;
+                    //break;
                 }
             }
             System.out.println((EndTime - StartTime) + "nanoseconds");
@@ -73,22 +118,13 @@ public class Client {
             e.printStackTrace();
         }
         toRouter.close();
-        fromRouter.close();
-//        stdIn.close();
-        socket.close();
-    }
-
-    /**
-     * @param fileReader
-     * @return
-     * @throws IOException
-     */
-    public static CopyOnWriteArrayList<String> readFile(BufferedReader fileReader) throws IOException {
-        String newLine;
-        CopyOnWriteArrayList<String> newList = new CopyOnWriteArrayList<String>();
-        while(( newLine = fileReader.readLine()) != null){
-            newList.add(newLine);
+        try {
+            fromRouter.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return newList;
+
+
     }
 }
