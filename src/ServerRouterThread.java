@@ -6,6 +6,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.lang.String;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -45,7 +46,7 @@ public class ServerRouterThread extends Thread {
         this.index = index;
 
         //Place client's IP and socket in routing table
-        routingTable[this.index][0] = clientSocket.getInetAddress().getHostAddress();
+        routingTable[this.index][0] = clientSocket.getInetAddress().getHostAddress() + ":" + Integer.toString(index);
         routingTable[this.index][1] = clientSocket;
     }
 
@@ -88,7 +89,8 @@ public class ServerRouterThread extends Thread {
     private void tableLookup() throws IOException {
         for (Object[] objects : routingTable) {
             String ip = (String) objects[0];
-            if(destinationIP.equals(ip)){
+            String split[] = ip.split(":");
+            if(destinationIP.equals(split[0])){
                 System.out.printf("Destination found %s in table%n", destinationIP);
                 destinationSocket = (Socket)objects[1];
                 toDestination = new PrintWriter(destinationSocket.getOutputStream(), true);
