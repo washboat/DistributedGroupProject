@@ -183,4 +183,4 @@ A straight, cylindrical wire lying along the x axis has a length of 0.500 m and 
 produced in the copper wires.
 
 
-end
+eof
