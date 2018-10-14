@@ -1,3 +1,9 @@
+import org.jetbrains.annotations.NotNull;
+
+/**
+* Holds all variables and functions needed to time threads
+* @author Triston C Gregoire
+* */
 public class TimeKeeper {
     double startTime = -1;
     double endTime = -1;
@@ -17,24 +23,12 @@ public class TimeKeeper {
         avg = sum / size;
         return avg;
     }
-    static public double ignoreOutliers(){
-        Object[][] temp = table;
-        temp[0][1] = 0.0;
-        double sum = 01;
-        double avg = -1;
-        double size = temp.length;
-        for (Object[] objects : temp) {
-            sum += (double) objects[1];
-        }
-        avg = sum / (size - 1);
-        return avg;
-    }
 
-    static public void comma(StringBuilder sb){
+    static void comma(@NotNull StringBuilder sb){
         sb.append(",");
     }
 
-    static public void newLine(StringBuilder sb){
+    static void newLine(@NotNull StringBuilder sb){
         sb.append("\n");
     }
 }

@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,20 +9,14 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.lang.String;
-import java.util.concurrent.CopyOnWriteArrayList;
-
-
 
 public class ServerRouterThread extends Thread {
 
     private Object routingTable[][] = null;
 
-    //Client streams
     private PrintWriter toClient = null;
     private BufferedReader fromClient = null;
 
-    //Destination streams
-    private Socket destinationSocket = null;
     private PrintWriter toDestination = null;
     private BufferedReader fromDestination = null;
 
@@ -34,13 +30,14 @@ public class ServerRouterThread extends Thread {
     private final String SERVER = "server";
 
     /**
-     * @param table - Object [String][Socket]
-     * @param clientSocket - socket to the client to be inserted into routing table
-     * @param index - the location to insert the client into the routing table
-     * @throws IOException - if we can't I/O streams usually do to being passed a null socket
+     * Services each new connection to the ServerRouter
+     *
+     * @param table Object [String][Socket]
+     * @param clientSocket socket to the client to be inserted into routing table
+     * @param index  the location to insert the client into the routing table
+     * @throws IOException
      */
-    public ServerRouterThread(Object table[][], Socket clientSocket, int index) throws IOException {
-        String myIP[] = null;
+    public ServerRouterThread(Object table[][], @NotNull Socket clientSocket, int index) throws IOException {
         routingTable = table;
         toClient = new PrintWriter(clientSocket.getOutputStream(), true);
         fromClient = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -48,12 +45,12 @@ public class ServerRouterThread extends Thread {
 
 
         //Place client's IP and socket in routing table
-        routingTable[this.index][0] = clientSocket.getInetAddress().getHostAddress() + ":" + Integer.toString(index);
+        routingTable[this.index][0] = clientSocket.getInetAddress().getHostAddress() + ":" + Integer.toString(index); //append ':index' to client's IP to differentiate between clients on the same machine
         routingTable[this.index][1] = clientSocket;
     }
 
     /**
-     *
+     * Start of thread's life
      */
     @Override
     public void run() {
@@ -64,9 +61,11 @@ public class ServerRouterThread extends Thread {
                     clientType = clientIdentifier;
                     break;
                 }
+                else {
+                    throw new UnknownClientException(clientIdentifier);
+                }
             }
             /*
-            TODO add client type to routing table
             Clients and servers are serviced a little differently so we check their type
             */
             switch(clientType){
@@ -80,103 +79,88 @@ public class ServerRouterThread extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        catch (UnknownClientException e){
+            e.printStackTrace();
+            System.err.printf("Unknown type of client \"%s\" %n", e.getType());
+        }
     }
 
     /**
-     * TODO handle case where destinationIP doesn't match any ip in the routing table
+     * Searches routing table for a record matching destinationIP. initializes input and output streams if lookup is successful
+     *
      * @throws IOException
      *
-     * searches routing table for a record matching destinationIP
      */
     private void tableLookup() throws IOException {
         for (Object[] objects : routingTable) {
             String ip = (String) objects[0];
-
             if (destinationIP.equals(ip)){
                 System.out.printf("Destination found %s in table%n", destinationIP);
-                destinationSocket = (Socket)objects[1];
+                //Destination streams
+                Socket destinationSocket = (Socket) objects[1];
                 toDestination = new PrintWriter(destinationSocket.getOutputStream(), true);
                 fromDestination = new BufferedReader(new InputStreamReader(destinationSocket.getInputStream()));
                 break;
-            }
-
-            else if(destinationIP.contains(":")) {
-                String split[] = ip.split(":");
-                if (destinationIP.equals(split[0])) {
-                    System.out.printf("Destination found %s in table%n", destinationIP);
-                    destinationSocket = (Socket) objects[1];
-                    toDestination = new PrintWriter(destinationSocket.getOutputStream(), true);
-                    fromDestination = new BufferedReader(new InputStreamReader(destinationSocket.getInputStream()));
-                    break;
-                }
             }
         }
     }
 
 
     /**
+     * Reads from the fromClient input stream and sends data to the destination. if an ipv4 address is found in the stream, the routing table is searched and the matching socket becomes the new destination
+     *
      * @throws IOException
      *
-     * reads from the fromClient input stream and sends data to the destination
-     * if an ipv4 address is found in the stream, the routing table is searched and the matching socket is the new destination
      */
     private void deliver() throws IOException {
         while((inputLine = fromClient.readLine()) != null) {
-            System.out.printf("Attempting to send line: %s to destination: %s%n", inputLine, destinationIP);
+            System.out.printf("SENDING LINE: %s TO DESTINATION: %s%n", inputLine, destinationIP);
             outputLine = inputLine;
-            String temp = null;
-            if(outputLine.contains(":")) {
-                temp = (outputLine.split(":"))[0];
+            String ip = null;
+            if(outputLine.contains(":")) {// check for ip address if line contains ':'
+                ip = (outputLine.split(":"))[0];
+                if (checkIPv4(ip)){
+                    destinationIP = outputLine;
+                    tableLookup();
+                }
             }
-            if (checkIPv4(temp)){
-                destinationIP = outputLine;
-                //
-                tableLookup();
-            }
-            if(outputLine != null && !outputLine.isEmpty()) {
-
-                toDestination.println(outputLine);
-                //System.out.println(outputLine + "Successfully sent");
-
-            }
+            if(outputLine != null ) toDestination.println(outputLine);
         }
     }
 
+    /**
+     * Handles communication with a client process
+     *
+     *  @throws IOException
+     */
     public void serviceClient() throws IOException {
-        System.out.println("Servicing client" + routingTable[index][0]);
-
+        System.out.printf("SERVICING CLIENT: %s%n", routingTable[index][0]);
         destinationIP = fromClient.readLine();
-        System.out.println("Destination IP address" +  destinationIP);
-
-
         tableLookup();
-
+        //send client IP to the server
         toDestination.println(routingTable[this.index][0]);
         deliver();
     }
 
-    //WE ARE NOT UPDATING DESTINATION ip TO THE CURRENT IP SO THE MESSAGES ALWAYS GET SENT TO FIRST CLIENT
-    // "fixed" issue by doing another table lookup in the deliver() method. find better solution later.
+
+    /**
+     * Handles communication with a server process
+     *
+     *  @throws IOException
+     */
     public void serviceServer() throws IOException {
-        System.out.println("Serving a Server");
-        String ready;
-        while ((ready = fromClient.readLine()) != null){
-            if (ready.equals("ready")) {
-                break;
-            }
-        }
-//        String tempInput = fromClient.readLine();
-//        if (tempInput.contains(":"))
-//            clientIP = tempInput.split(":");
-//        destinationIP = clientIP[0];
+        System.out.println("Server connected");
         destinationIP = fromClient.readLine();
         System.out.println("Destination IP address" +  destinationIP);
-
         tableLookup();
         deliver();
-
     }
-    public static final boolean checkIPv4(final String ip) {
+
+    /**
+     * @param ip String to be checked for IPv4 compliance
+     * @return returns true if ip is a string representation of a valid IPv4, returns false otherwise
+     */
+    private static boolean checkIPv4(final String ip) {
         boolean isIPv4;
         try {
             final InetAddress inet = InetAddress.getByName(ip);
