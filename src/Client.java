@@ -42,7 +42,7 @@ public class Client extends TimeKeeper implements Runnable  {
 
     }
     public static void main(String[] args) throws IOException {
-        String serverIP = "192.168.1.76:0"; //SERVER ip NEED TO HAVE THE :0 AT THE END OF THE ADDRESS
+        String serverIP = "192.168.1.76:0"; //SERVER ip NEEDS TO HAVE THE :0 AT THE END OF THE ADDRESS
         String routerIP = "192.168.1.76";
         String outputFile = "test.csv";
         int maxClients = 10;

@@ -8,20 +8,6 @@ import java.io.*;
  * */
 
 
-/*
- * So, the "protocol" I had in mind
- *   when writing this class goes like so:
- *   1) Processes connecting to the router must identify what their type is. Server or Client
- *
- *   2) After declaring their type, clients connecting to the router should send the IP of their destination before sending any data.
- *       Servers have no such restriction
- *
- *   3) Sending the router an IPv4 address after the initial handshakes are complete will tell the router to shift its routing to the
- *       new IP iff that new IP is in the routing table
- *
- *   4) There should probably be some end of service carriage that clients and servers can send to shut everything down while testing. Currently "eof" is that carriage
- * */
-
 /**
  * Converts any message it receives from router into uppercase and sends the message back to the router
  * @author Triston C Gregoire
@@ -32,7 +18,6 @@ public class Server extends Thread {
         PrintWriter toRouter = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader fromRouter = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String type = "server";
-        toRouter.println(type);
 
         String inputLine = null;
         while((inputLine = fromRouter.readLine()) != null){

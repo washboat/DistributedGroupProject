@@ -55,33 +55,9 @@ public class ServerRouterThread extends Thread {
     @Override
     public void run() {
         try {
-            String clientIdentifier;
-            while((clientIdentifier = fromClient.readLine()) != null) {
-                if (clientIdentifier.equals(CLIENT) || clientIdentifier.equals(SERVER)) {
-                    clientType = clientIdentifier;
-                    break;
-                }
-                else {
-                    throw new UnknownClientException(clientIdentifier);
-                }
-            }
-            /*
-            Clients and servers are serviced a little differently so we check their type
-            */
-            switch(clientType){
-                case CLIENT:
-                    serviceClient();
-                    break;
-                case SERVER:
-                    serviceServer();
-                    break;
-            }
+            service();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        catch (UnknownClientException e){
-            e.printStackTrace();
-            System.err.printf("Unknown type of client \"%s\" %n", e.getType());
         }
     }
 
@@ -129,32 +105,19 @@ public class ServerRouterThread extends Thread {
     }
 
     /**
-     * Handles communication with a client process
+     * Handles communication with a remote process
      *
      *  @throws IOException
      */
-    public void serviceClient() throws IOException {
+    public void service() throws IOException {
         System.out.printf("SERVICING CLIENT: %s%n", routingTable[index][0]);
         destinationIP = fromClient.readLine();
         tableLookup();
-        //send client IP to the server
+        //send client IP to the destination
         toDestination.println(routingTable[this.index][0]);
         deliver();
     }
 
-
-    /**
-     * Handles communication with a server process
-     *
-     *  @throws IOException
-     */
-    public void serviceServer() throws IOException {
-        System.out.println("Server connected");
-        destinationIP = fromClient.readLine();
-        System.out.println("Destination IP address" +  destinationIP);
-        tableLookup();
-        deliver();
-    }
 
     /**
      * @param ip String to be checked for IPv4 compliance
